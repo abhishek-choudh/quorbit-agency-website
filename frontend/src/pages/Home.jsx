@@ -1,18 +1,19 @@
-import MainLayout from "../layouts/MainLayout";
-import Services from "../components/Services";
-import Orbit from "../components/Orbit";
-import WhyChooseUs from "../components/WhyChooseUs";
-import { useNavigate } from "react-router-dom";
-import Stats from "../components/Stats";
-import Testimonials from "../components/Testimonials";
+"use client";
+import MainLayout from "../app/layouts/MainLayout";
+import Services from "../app/components/Services";
+import Orbit from "../app/components/Orbit";
+import WhyChooseUs from "../app/components/WhyChooseUs";
+import Stats from "../app/components/Stats";
+import Testimonials from "../app/components/Testimonials";
+
 function Home() {
-  const navigate = useNavigate();
+ 
  return (
 
   <MainLayout>
 
     <div className="overflow-hidden">
-        <Orbit />
+        <Orbit/>
 
       {/* Yellow Glow */}
       <div className="absolute top-40 left-20 w-72 h-72 bg-yellow-400 opacity-20 blur-[120px] rounded-full"></div>
@@ -57,7 +58,7 @@ function Home() {
       <div className="flex flex-wrap gap-6 mt-12">
 
         <button
-          onClick={() => navigate("/contact")}
+         onClick={() => window.location.href="/contact"}
           className="bg-[#FFC919] text-black px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition duration-300 shadow-[0_0_30px_#FFC919]"
         >
 
@@ -66,8 +67,7 @@ function Home() {
         </button>
 
         <button
-  onClick={() => navigate("/contact")}
-  className="border border-gray-700 px-8 py-4 rounded-full text-lg hover:border-[#FFC919] hover:text-[#FFC919] transition duration-300"
+      onClick={() => window.location.href="/services"}  className="border border-gray-700 px-8 py-4 rounded-full text-lg hover:border-[#FFC919] hover:text-[#FFC919] transition duration-300"
 >
 
   View Services

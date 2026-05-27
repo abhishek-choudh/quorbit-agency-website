@@ -4,9 +4,9 @@ import {
   FaChartLine,
   FaRobot
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+
 function Services() {
-  const navigate = useNavigate();
+  
 
   const services = [
   {
@@ -65,7 +65,7 @@ function Services() {
 
            <div
   key={index}
-  onClick={() => navigate(service.link)}
+  onClick={() => window.location.href=service.link}
 
   className="group bg-[#1B1B24] border border-gray-800 rounded-[32px] p-10 hover:border-[#FFC919] hover:scale-105 transition-all duration-500 cursor-pointer relative overflow-hidden"
 >

@@ -1,9 +1,13 @@
-import MainLayout from "../app/layouts/MainLayout";
+"use client";
+import MainLayout from "../layouts/MainLayout";
 
-function About() {
+import Navbar from "../components/Navbar";
+
+export default function About() {
 
   return (
 
+   
     <MainLayout>
 
       <div className="bg-[#14141A] text-white overflow-hidden">
@@ -156,10 +160,7 @@ function About() {
         </section>
 
       </div>
-
-    </MainLayout>
+   </MainLayout>
 
   );
 }
-
-export default About;

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 function Footer() {
@@ -35,20 +36,20 @@ function Footer() {
           <ul className="space-y-4 text-gray-400">
 
             <li>
-              <Link to="/" className="hover:text-[#FFC919] transition">
+              <Link href="/" className="hover:text-[#FFC919] transition">
                 Home
               </Link>
             </li>
 
             <li>
-              <Link to="/about" className="hover:text-[#FFC919] transition">
+              <Link href="/about" className="hover:text-[#FFC919] transition">
                 About
               </Link>
             </li>
 
             <li>
               <Link
-                to="/performance-marketing"
+                href="/performance-marketing"
                 className="hover:text-[#FFC919] transition"
               >
                 Services
@@ -57,7 +58,7 @@ function Footer() {
 
             <li>
               <Link
-                to="/contact"
+                href="/contact"
                 className="hover:text-[#FFC919] transition"
               >
                 Contact

@@ -1,80 +1,69 @@
-import MainLayout from "../app/layouts/MainLayout";
+"use client";
 import axios from "axios";
-import toast from "react-hot-toast";
+import MainLayout from "../layouts/MainLayout";
+//import Navbar from "../components/Navbar";
 import { useState } from "react";
-
-
-function Contact() {
-
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-
-    first_name: "",
-    last_name: "",
-    email: "",
-    company: "",
-   
-    website: "",
-
-service: "",
-
-budget: "",
- message: ""
-
+export default function Contact() {
+    const [formData, setFormData] = useState({
+       
+  first_name: "",
+  last_name: "",
+  email: "",
+  company: "",
+  website: "",
+  service: "",
+  budget: "",
+  message: "",
+});
+ const [loading, setLoading] = useState(false);
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
   });
+};
+const handleSubmit = async (e) => {
+   
 
-  const handleChange = (e) => {
+  e.preventDefault();
+   console.log("FORM SUBMIT CLICKED");
+
+  setLoading(true);
+
+  try {
+
+   await axios.post(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
+  formData
+);
+    alert("Form Submitted Successfully 🚀");
 
     setFormData({
-
-      ...formData,
-
-      [e.target.name]: e.target.value
-
+      first_name: "",
+      last_name: "",
+      email: "",
+      company: "",
+      website: "",
+      service: "",
+      budget: "",
+      message: "",
     });
 
-  };
+  } catch (error) {
 
-  const handleSubmit = async (e) => {
+    console.log(error);
 
-    e.preventDefault();
-    setLoading(true);
+  } finally {
 
-    try {
+    setLoading(false);
 
-      const response = await axios.post(
+  }
 
-        "http://localhost:5000/contact",
+};
 
-        formData
-
-      );
-
-      toast.success(response.data.message);
-      setLoading(false);
-      setFormData({
-
-        first_name: "",
-        last_name: "",
-        email: "",
-        company: "",
-        message: ""
-
-      });
-
-    } catch (error) {
-
-      console.log(error);
-
-     toast.error("Something went wrong ❌");
-     setLoading(false);
-    }
-
-  };
 
   return (
-
-    <MainLayout>
+ <MainLayout>
 
       <div className="min-h-screen bg-[#14141A] text-white px-6 py-32">
 
@@ -102,7 +91,7 @@ budget: "",
           <div className="bg-[#1B1B24] border border-gray-800 rounded-3xl p-10">
 
             <form
-              onSubmit={handleSubmit}
+             onSubmit={handleSubmit}
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
 
@@ -331,7 +320,6 @@ budget: "",
 
     </MainLayout>
 
+
   );
 }
-
-export default Contact;
