@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
@@ -12,11 +13,8 @@ app.use(express.json());
 const db = mysql.createConnection({
 
   host: process.env.DB_HOST,
-
   user: process.env.DB_USER,
-
   password: process.env.DB_PASSWORD,
-
   database: process.env.DB_NAME
 
 });
@@ -25,8 +23,6 @@ const db = mysql.createConnection({
 db.connect((err) => {
 
   if (err) {
-
-    console.log("Database Connection Failed ❌");
 
     console.log(err);
 
@@ -44,73 +40,69 @@ app.get("/", (req, res) => {
   res.send("Backend Running Successfully 🚀");
 
 });
+
 /* CONTACT API */
-app.post("/contact", (req, res) => {
+app.post("/api/contact", (req, res) => {
 
+
+  
   const {
-
-  first_name,
-  last_name,
-  email,
-  company,
-  website,
-  service,
-  budget,
-  message
-
-} = req.body;
+    first_name,
+    last_name,
+    email,
+    company,
+    website,
+    service,
+    budget,
+    message
+  } = req.body;
 
   const sql = `
-  
     INSERT INTO contacts
-(
-  first_name,
-  last_name,
-  email,
-  company,
-  website,
-  service,
-  budget,
-  message
-)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    (
+      first_name,
+      last_name,
+      email,
+      company,
+      website,
+      service,
+      budget,
+      message
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(
 
     sql,
 
-   [
-  first_name,
-  last_name,
-  email,
-  company,
-  website,
-  service,
-  budget,
-  message
-],
+    [
+      first_name,
+      last_name,
+      email,
+      company,
+      website,
+      service,
+      budget,
+      message
+    ],
+
     (err, result) => {
 
       if (err) {
 
         console.log(err);
 
-        res.status(500).json({
-
+        return res.status(500).json({
           message: "Failed to save contact"
-
-        });
-
-      } else {
-
-        res.status(200).json({
-
-          message: "Contact Saved Successfully ✅"
-
         });
 
       }
+
+      res.status(200).json({
+        success: true,
+        message: "Contact Saved Successfully ✅"
+      });
 
     }
 
